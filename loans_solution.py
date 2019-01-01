@@ -7,15 +7,9 @@ import matplotlib.pyplot as plt
 #import csv file
 df = pd.read_csv('data.csv')
 
-#group by purpose
-df_by_purpose = df.groupby('purpose')
-
-#calculate mean of each column
-df_mean = df_by_purpose.mean()
-
-#extract mean interest rates
+#group by purpose, calculate mean interest rates
 #convert series to dataframe object
-results = df_mean['int_rate'].to_frame()
+results = df.groupby('purpose').mean()['int_rate'].to_frame()
 
 #rename columns
 results = results.rename(columns = {'int_rate':'avg_rate'})
